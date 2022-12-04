@@ -238,7 +238,7 @@ public class PassportsController implements Initializable {
             Font font = FontFactory.getFont(String.valueOf(Font.FontFamily.TIMES_ROMAN), BaseFont.IDENTITY_H, true);
 
             try {
-                BaseFont bf = BaseFont.createFont("C:\\Users\\FM\\IdeaProjects\\GOTOWE_PROJEKTY\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
+                BaseFont bf = BaseFont.createFont("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
                 font = new Font(bf, 8);
             }catch(IOException e){
                 System.out.println("Font loading error.."+e.getMessage());
@@ -254,7 +254,7 @@ public class PassportsController implements Initializable {
 
                     PdfPCell imageCell = new PdfPCell(new Paragraph());
                     try {
-                        Image img = Image.getInstance("C:\\Users\\FM\\IdeaProjects\\GOTOWE_PROJEKTY\\GardenDataBase\\pobrane.png");
+                        Image img = Image.getInstance("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\pobrane.png");
                         imageCell.addElement(img);
                         imageCell.setBorderColor(BaseColor.WHITE);
                         upCell.addCell(imageCell);

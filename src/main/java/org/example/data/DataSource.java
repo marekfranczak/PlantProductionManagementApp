@@ -12,8 +12,7 @@ import java.util.List;
 public class DataSource {
 
     private final String DB_NAME = "Garden.db";
-    private final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\FM\\IdeaProjects\\GOTOWE_PROJEKTY\\GardenDataBase\\" + DB_NAME;
-
+    private final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\" + DB_NAME;
     public final String TABLE_FLOWERS = "flowers";
     private final String COLUMN_FLOWER_ID = "flowerId";
     private final String COLUMN_FLOWER_NAME_PL = "namePL";
