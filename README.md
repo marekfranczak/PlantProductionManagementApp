@@ -22,13 +22,21 @@
 ## General info
 Will be soon
 
-![Choosing file to send](Pictures/dataTransferProgram.jpg)
+![Overview passports](Documents/2.jpg)
 
-![Connecting between computers](Pictures/dataTransferProgram4.jpg)
+Overview passports
 
-![Changing target computer](Pictures/dataTransferProgram3.jpg)
+![Deleting passport](Documents/4.jpg)
 
-![App first view](Pictures/dataTransferProgram2.jpg)
+Deleting passport
+
+![Creating passport](Documents/5.jpg)
+
+Creating passport
+
+![Overview flawers](Documents/8.jpg)
+
+Overview flawers
 
 ## License
 For open source projects, say how it is licensed.
