@@ -28,6 +28,10 @@
 
 **3.0** - App will be published on AWS. Propable change of database. Plans for future.
 
+![Overview passports](Documents/DataBaseDiagram.png)
+
+**Database diagram**
+
 ![Overview passports](Documents/2.jpg)
 
 **Overview passports**
