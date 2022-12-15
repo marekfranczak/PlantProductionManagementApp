@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/shops")
 public class ShopsController {
 
+    private ShopsService shopsService;
+
     @Autowired
-    ShopsService shopsService;
+    public ShopsController(ShopsService shopsService){
+        this.shopsService = shopsService;
+    }
 
     @GetMapping("/list")
     public String shopsList(Model model){

@@ -4,7 +4,7 @@ import garden.database.entity.Passports;
 
 import java.util.List;
 
-public interface PassportDAO {
+public interface PassportsDAO {
 
     public List<Passports> findAll();
 

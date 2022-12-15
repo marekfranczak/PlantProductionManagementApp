@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/flowers")
 public class FlowersController {
 
-    @Autowired
     private FlowersService flowersService;
+
+    @Autowired
+    public FlowersController(FlowersService flowersService){
+        this.flowersService = flowersService;
+    }
 
     @GetMapping("/list")
     public String flowerList(Model model){
