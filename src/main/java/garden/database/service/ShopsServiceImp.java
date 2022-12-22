@@ -21,17 +21,25 @@ public class ShopsServiceImp implements ShopsService{
     }
 
     @Override
+    @Transactional
     public Shops findById(int id) {
-        return null;
+        return shopsDAO.findById(id);
     }
 
     @Override
+    @Transactional
     public void save(Shops shop) {
-
+        shopsDAO.save(shop);
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
+        shopsDAO.deleteById(id);
+    }
 
+    @Override
+    public Shops findByName(String name) {
+        return shopsDAO.findByName(name);
     }
 }

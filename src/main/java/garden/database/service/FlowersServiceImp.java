@@ -21,17 +21,20 @@ public class FlowersServiceImp implements FlowersService{
     }
 
     @Override
+    @Transactional
     public Flowers findById(int id) {
-        return null;
+        return flowersDAO.findById(id);
     }
 
     @Override
+    @Transactional
     public void save(Flowers flower) {
-
+        flowersDAO.save(flower);
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
-
+        flowersDAO.deleteById(id);
     }
 }

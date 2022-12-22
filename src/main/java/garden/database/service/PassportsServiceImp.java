@@ -21,17 +21,20 @@ public class PassportsServiceImp implements PassportsService{
     }
 
     @Override
+    @Transactional
     public Passports findById(int id) {
-        return null;
+        return passportsDAO.findById(id);
     }
 
     @Override
+    @Transactional
     public void save(Passports passports) {
-
+        passportsDAO.save(passports);
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
-
+        passportsDAO.deleteById(id);
     }
 }

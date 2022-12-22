@@ -15,10 +15,10 @@
   <h3>Garden DataBase</h3>
   <hr>
 
-  <!-- Add a button
-  <a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-      Add Employee
-  </a>-->
+  <!-- Add a button-->
+  <a th:href="@{/shops/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+      Add Shop
+  </a>
 
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
@@ -26,6 +26,7 @@
       <th>Id</th>
       <th>Name</th>
       <th>Address</th>
+      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -33,23 +34,22 @@
       <td th:text="${shop.id}" />
       <td th:text="${shop.name}" />
       <td th:text="${shop.address}" />
-      <td Update />
-      <!-- Add update button/link
+      <!-- Add update button/link-->
       <td>
-          <a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"
+          <a th:href="@{/shops/showFormForUpdate(shopId=${shop.id})}"
              class="btn btn-info btn-sm">
               Update
           </a>
-      </td>-->
+      |
 
-      <!-- Add delete button/link
-      <td>
-          <a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+      <!-- Add delete button/link-->
+
+          <a th:href="@{/shops/delete(shopId=${shop.id})}"
              class="btn btn-danger btn-sm"
-             onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+             onclick="if (!(confirm('Are you sure you want to delete this shop?'))) return false">
               Delete
           </a>
-      </td>-->
+      </td>
 
     </tbody>
   </table>

@@ -15,42 +15,40 @@
   <h3>Garden DataBase</h3>
   <hr>
 
-  <!-- Add a button
-  <a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-      Add Employee
-  </a>-->
+  <!-- Add a button-->
+  <a th:href="@{/passports/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+      Add Passport
+  </a>
 
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
       <th>Id</th>
-      <th>Shop Id</th>
+      <th>Shop Name</th>
       <th>Data</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "passport : ${passports}">
-      <td th:text="${passport.id}" />
-      <td th:text="${passport.shop}" />
-      <td th:text="${passport.data}" />
-      <td Update />
-      <!-- Add update button/link
+      <td th:text="${passport.key.id}" />
+      <td th:text="${passport.value}" />
+      <td th:text="${passport.key.data}" />
+      <!-- Add update button/link-->
       <td>
-          <a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"
+          <a th:href="@{/passports/showFormForUpdate(passportId=${passport.key.id})}"
              class="btn btn-info btn-sm">
               Update
           </a>
-      </td>-->
+      |
 
-      <!-- Add delete button/link
-      <td>
-          <a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+      <!-- Add delete button/link-->
+          <a th:href="@{/passports/delete(passportId=${passport.key.id})}"
              class="btn btn-danger btn-sm"
-             onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+             onclick="if (!(confirm('Are you sure you want to delete this passport?'))) return false">
               Delete
           </a>
-      </td>-->
+      </td>
 
     </tbody>
   </table>

@@ -9,25 +9,26 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public class FlowersArrangementDAOImp implements FlowersArrangementDAO{
 
     private EntityManager entityManager;
 
     @Autowired
     public FlowersArrangementDAOImp(EntityManager entityManager){
-        this.entityManager = entityManager;
+        //this.entityManager = entityManager;
     }
 
     @Override
     public List<FlowersArrangement> findAll() {
-        Session currentSession = entityManager.unwrap(Session.class);
-
-        Query<FlowersArrangement> query = currentSession.createQuery("from FlowersArrangement", FlowersArrangement.class);
-
-        List<FlowersArrangement> flowersArrangements  = query.getResultList();
-
-        return flowersArrangements;
+//        Session currentSession = entityManager.unwrap(Session.class);
+//
+//        Query<FlowersArrangement> query = currentSession.createQuery("from FlowersArrangement", FlowersArrangement.class);
+//
+//        List<FlowersArrangement> flowersArrangements  = query.getResultList();
+//
+//        return flowersArrangements;
+        return null;
     }
 
     @Override

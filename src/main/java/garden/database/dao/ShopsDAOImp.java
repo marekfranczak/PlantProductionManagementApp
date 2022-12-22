@@ -35,16 +35,42 @@ public class ShopsDAOImp implements ShopsDAO{
 
     @Override
     public Shops findById(int id) {
-        return null;
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        Shops shop = currentSession.get(Shops.class, id);
+
+        return shop;
     }
 
     @Override
     public void save(Shops shop) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        currentSession.saveOrUpdate(shop);
 
     }
 
     @Override
     public void deleteById(int id) {
 
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query query = currentSession.createQuery("delete from Shops where id=:id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
+    }
+
+    @Override
+    public Shops findByName(String name) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        //Shops shop = currentSession.get(Shops.class, name);
+        Query<Shops> query = currentSession.createQuery("from Shops where name=:shop", Shops.class);
+        query.setParameter("shop", name);
+        Shops shop = query.getSingleResult();
+        System.out.println("ShopsDAOImp: shop.getId = "+shop.getId());
+        return shop;
     }
 }

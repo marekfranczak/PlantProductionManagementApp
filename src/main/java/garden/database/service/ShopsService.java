@@ -14,4 +14,6 @@ public interface ShopsService {
 
     public void deleteById(int id);
 
+    public Shops findByName(String name);
+
 }

@@ -31,16 +31,27 @@ public class PassportsDAOImp implements PassportsDAO {
 
     @Override
     public Passports findById(int id) {
-        return null;
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        Passports passport = currentSession.get(Passports.class, id);
+        return passport;
     }
 
     @Override
     public void save(Passports passports) {
+        Session currentSession = entityManager.unwrap(Session.class);
 
+        currentSession.saveOrUpdate(passports);
     }
 
     @Override
     public void deleteById(int id) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query query = currentSession.createQuery("delete from Passports where id=:id");
+        query.setParameter("id", id);
+        query.executeUpdate();
 
     }
 }

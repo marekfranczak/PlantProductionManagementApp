@@ -5,8 +5,7 @@ import garden.database.service.FlowersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +28,36 @@ public class FlowersController {
         return "flowers-list";
     }
 
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model){
+
+        Flowers flower = new Flowers();
+        model.addAttribute("flower", flower);
+        return "flowers-form";
+    }
+
+    @PostMapping("/save")
+    public String saveFlower(@ModelAttribute("flower") Flowers flower){
+
+        flowersService.save(flower);
+
+        return "redirect:/flowers/list";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("flowerId") int id, Model model){
+
+        Flowers flower = flowersService.findById(id);
+        model.addAttribute("flower", flower);
+
+        return "flowers-form";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("flowerId") int id, Model model){
+
+        flowersService.deleteById(id);
+        return "redirect:/flowers/list";
+    }
 
 }
