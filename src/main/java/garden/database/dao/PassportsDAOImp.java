@@ -34,6 +34,7 @@ public class PassportsDAOImp implements PassportsDAO {
 
         Session currentSession = entityManager.unwrap(Session.class);
         Passports passport = currentSession.get(Passports.class, id);
+
         return passport;
     }
 

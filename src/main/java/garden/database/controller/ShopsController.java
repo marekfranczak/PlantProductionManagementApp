@@ -2,9 +2,11 @@ package garden.database.controller;
 
 import garden.database.entity.Shops;
 import garden.database.service.ShopsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +39,13 @@ public class ShopsController {
     }
 
     @PostMapping("/save")
-    public String saveShop(@ModelAttribute("shop") Shops shop){
-        System.out.println("ShopsController: "+shop.toString());
+    public String saveShop(@Valid @ModelAttribute("shop") Shops shop, BindingResult shopError, Model model){
+
+        if(shopError.hasErrors()){
+            model.addAttribute("shop", shop);
+            return "shops-form";
+        }
+
         shopsService.save(shop);
 
         return "redirect:/shops/list";

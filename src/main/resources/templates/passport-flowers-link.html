@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Garden DataBase</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Garden DataBase</title>
+</head>
+
+<body>
+<div class="conteiner">
+
+  <h3>Garden DataBase</h3>
+  <hr>
+
+  Passport ID: <label th:text="${passport.id}" />
+  Shop Name: <label th:text="${passport.shop.name}" />
+  Passport Data: <label th:text="${passport.data}" />
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Id</th>
+      <th>Polish Name</th>
+      <th>Latin Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <form action="#" th:action="@{/passports_flowers_link/save(passportId=${passport.id})}"
+          th:object="${flower}" method="POST">
+
+      <!-- Add hidden form field to handle update-->
+      <input type="hidden" th:field="*{id}" >
+      <input type="text" th:field="*{namePL}" class="form-control mb-4 col-4" placeholder="Polish name">
+      <ul>
+        <li th:each="err : ${#fields.errors('namePL')}" th:text="${err}" class="error" />
+      </ul>
+      <input type="text" th:field="*{nameLA}" class="form-control mb-4 col-4" placeholder="Latin Name">
+      <ul>
+        <li th:each="err : ${#fields.errors('nameLA')}" th:text="${err}" class="error" />
+      </ul>
+
+      <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+
+    <tr th:each = "flower : ${passport.flowers}">
+      <td th:text="${flower.id}" />
+      <td th:text="${flower.namePL}" />
+      <td th:text="${flower.nameLA}" />
+      <!-- Add delete button/link-->
+      <td>
+
+        <a th:href="@{/passports_flowers_link/delete(passportId=${passport.id},flowerId=${flower.id})}"
+           class="btn btn-danger btn-sm"
+           onclick="if (!(confirm('Are you sure you want to delete this passport?'))) return false">
+          Delete
+        </a>
+      </td>
+
+    </tbody>
+  </table>
+
+</div>
+</body>
+
+</html>

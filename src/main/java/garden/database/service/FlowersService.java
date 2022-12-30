@@ -14,4 +14,6 @@ public interface FlowersService {
 
     public void deleteById(int id);
 
+    public Flowers findByName(String name);
+
 }

@@ -1,6 +1,11 @@
 package garden.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="passports")
@@ -14,11 +19,17 @@ public class Passports {
     @JoinColumn(name = "shop_id")
     private Shops shop;
     @Column(name = "date")
+    @NotEmpty(message = "Passport data cannot be empty!")
     private String data;
     @Column(name = "removed")
     private int removed;
 
-    //private String shopName;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name="flowers_passport_link",
+            joinColumns = @JoinColumn(name = "passport_id"),
+            inverseJoinColumns = @JoinColumn(name="flower_id"))
+    private Set<Flowers> flowers = new HashSet<>();
+
 
     public Passports(){}
 
@@ -54,21 +65,39 @@ public class Passports {
         this.removed = removed;
     }
 
-//    public String getShopName() {
-//        return shopName;
-//    }
-//
-//    public void setShopName(String shopName) {
-//        this.shopName = shopName;
-//    }
+    public Set<Flowers> getFlowers() {
+        if (flowers == null)
+            flowers = new HashSet<>();
+        return flowers;
+    }
+
+    public void setFlowers(Set<Flowers> flowers) {
+        this.flowers = flowers;
+    }
+
+    public void addFlower(Flowers flower){
+
+        this.flowers.add(flower);
+        flower.getPassports().add(this);
+
+    }
+
+    public void deleteFlower(Flowers flower){
+        if(flowers != null){
+            this.flowers.remove(flower);
+            flower.getPassports().remove(this);
+        }
+
+    }
 
     @Override
     public String toString() {
         return "Passports{" +
-                "passportsId=" + id +
-                ", shopId=" + shop +
+                "id=" + id +
+                ", shop=" + shop +
                 ", data='" + data + '\'' +
                 ", removed=" + removed +
+                ", flowers=" + flowers +
                 '}';
     }
 }

@@ -2,12 +2,10 @@ package garden.database.dao;
 
 import garden.database.entity.Flowers;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,10 +13,6 @@ import java.util.List;
 @Repository
 public class FlowersDAOImp implements FlowersDAO{
 
-    //1. Hibernate but I have problem with delete and update data
-    //         I don't understand Hibernate and JPA fully <-WORK delete but UPDATE still NO
-
-    //later check solution with SessionFactory not EntityManager
 
     private EntityManager entityManager;
 
@@ -33,10 +27,7 @@ public class FlowersDAOImp implements FlowersDAO{
     public List<Flowers> findAll() {
 
         Session currentSession = entityManager.unwrap(Session.class);
-
         Query<Flowers> query = currentSession.createQuery("from Flowers", Flowers.class);
-
-
         List<Flowers> flowers = query.getResultList();
 
         return flowers;
@@ -69,5 +60,21 @@ public class FlowersDAOImp implements FlowersDAO{
         query.setParameter("id", id);
         query.executeUpdate();
 
+    }
+
+    @Override
+    public Flowers findByName(String name) {
+        try{
+            Session currentSession = entityManager.unwrap(Session.class);
+
+            Query<Flowers> query = currentSession.createQuery("from Flowers where nameLA=:flower", Flowers.class);
+            query.setParameter("flower", name);
+            Flowers flower = query.getSingleResult();
+
+            return flower;
+        } catch (NoResultException e){
+
+            return null;
+        }
     }
 }

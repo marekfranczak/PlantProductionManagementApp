@@ -2,9 +2,11 @@ package garden.database.controller;
 
 import garden.database.entity.Flowers;
 import garden.database.service.FlowersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +39,17 @@ public class FlowersController {
     }
 
     @PostMapping("/save")
-    public String saveFlower(@ModelAttribute("flower") Flowers flower){
+    public String saveFlower(@Valid @ModelAttribute("flower") Flowers flower, BindingResult flowerError, Model model){
+
+        if(flowerError.hasErrors()) {
+            model.addAttribute("flower", flower);
+            return "flowers-form";
+        }
+
+        if(flowersService.findByName(flower.getNameLA()) != null)
+        {
+            return "redirect:/flowers/list";
+        }
 
         flowersService.save(flower);
 

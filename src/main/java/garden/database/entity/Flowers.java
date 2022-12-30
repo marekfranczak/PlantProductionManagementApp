@@ -2,6 +2,11 @@ package garden.database.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="flowers")
@@ -13,13 +18,20 @@ public class Flowers {
     private int id;
 
     @Column(name="name_pl")
+    @Size(min = 1, max = 250)
     private String namePL;
 
     @Column(name="name_la")
+    @NotEmpty(message = "Latin name cannot be empty!")
+    @Size(min = 1, max = 250)
     private String nameLA;
 
     @Column(name="removed")
     private int removed;
+
+
+    @ManyToMany(mappedBy = "flowers")
+    private Set<Passports> passports = new HashSet<>();
 
     public Flowers(){}
 
@@ -54,6 +66,16 @@ public class Flowers {
     public void setRemoved(int removed) {
         this.removed = removed;
     }
+
+    public Set<Passports> getPassports() {
+        return passports;
+    }
+
+    public void setPassports(Set<Passports> passports) {
+        this.passports = passports;
+    }
+
+
 
     @Override
     public String toString() {

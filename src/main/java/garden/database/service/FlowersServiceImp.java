@@ -37,4 +37,10 @@ public class FlowersServiceImp implements FlowersService{
     public void deleteById(int id) {
         flowersDAO.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public Flowers findByName(String name) {
+        return flowersDAO.findByName(name);
+    }
 }

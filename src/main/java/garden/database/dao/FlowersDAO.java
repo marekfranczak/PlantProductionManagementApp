@@ -13,4 +13,6 @@ public interface FlowersDAO {
     public void save(Flowers flower);
 
     public void deleteById(int id);
+
+    Flowers findByName(String name);
 }

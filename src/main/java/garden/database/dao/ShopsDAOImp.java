@@ -2,6 +2,7 @@ package garden.database.dao;
 
 import garden.database.entity.Shops;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,12 +66,18 @@ public class ShopsDAOImp implements ShopsDAO{
     @Override
     public Shops findByName(String name) {
 
+        //add exception jakarta.persistence.NoResultException: No result found for query [from Shops where name=:shop]
+
+        try{
         Session currentSession = entityManager.unwrap(Session.class);
-        //Shops shop = currentSession.get(Shops.class, name);
+
         Query<Shops> query = currentSession.createQuery("from Shops where name=:shop", Shops.class);
         query.setParameter("shop", name);
         Shops shop = query.getSingleResult();
-        System.out.println("ShopsDAOImp: shop.getId = "+shop.getId());
-        return shop;
+            return shop;
+        } catch (NoResultException e){
+            return null;
+        }
+
     }
 }

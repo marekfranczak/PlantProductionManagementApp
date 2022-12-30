@@ -1,6 +1,8 @@
 package garden.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="shops")
@@ -12,9 +14,12 @@ public class Shops {
     private int id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Shop's name cannot be empty!")
+    @Size(min=1, max = 250)
     private String name;
 
     @Column(name = "address")
+    @Size(min=1, max = 250)
     private String address;
 
     @Column(name = "removed")
