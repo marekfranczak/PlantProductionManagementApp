@@ -16,7 +16,7 @@
   <hr>
 
   Passport ID: <label th:text="${passport.id}" />
-  Shop Name: <label th:text="${passport.shop.name}" />
+  Shop Name: <label th:text="${passport?.shop?.name}" />
   Passport Data: <label th:text="${passport.data}" />
 
   <table class="table table-bordered table-striped">
@@ -36,13 +36,10 @@
       <!-- Add hidden form field to handle update-->
       <input type="hidden" th:field="*{id}" >
       <input type="text" th:field="*{namePL}" class="form-control mb-4 col-4" placeholder="Polish name">
-      <ul>
-        <li th:each="err : ${#fields.errors('namePL')}" th:text="${err}" class="error" />
-      </ul>
+      <p style="color:red;">This field cannot be empty.</p>
       <input type="text" th:field="*{nameLA}" class="form-control mb-4 col-4" placeholder="Latin Name">
-      <ul>
-        <li th:each="err : ${#fields.errors('nameLA')}" th:text="${err}" class="error" />
-      </ul>
+      <p style="color:red;">This field cannot be empty.</p>
+
 
       <button type="submit" class="btn btn-info col-2">Save</button>
 

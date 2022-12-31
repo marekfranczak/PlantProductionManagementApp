@@ -47,7 +47,8 @@ public class FlowersDAOImp implements FlowersDAO{
 
         Session currentSession = entityManager.unwrap(Session.class);
 
-        currentSession.saveOrUpdate(flower);
+        if(flower != null)
+            currentSession.saveOrUpdate(flower);
 
     }
 
