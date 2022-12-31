@@ -146,6 +146,8 @@ fabric.properties
 /.idea
 *.iml
 GardenDataBase/target
+HELP.md
+/.mvn
 
 ### Java ###
 # Compiled class file
