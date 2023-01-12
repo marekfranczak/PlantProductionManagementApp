@@ -33,19 +33,19 @@
 
 **Database diagram**
 
-![Overview passports](Documents/4.2.jpg)
+![Overview passports](Documents/42.png)
 
 **Overview passports**
 
-![Creating passport](Documents/5.2.jpg)
+![Creating passport](Documents/52.png)
 
 **Creating passport**
 
-![Overview shops](Documents/1.2.jpg)
+![Overview shops](Documents/12.png)
 
 **Overview shops**
 
-![Overview flawers](Documents/2.2.jpg)
+![Overview flawers](Documents/22.png)
 
 **Overview flawers**
 
