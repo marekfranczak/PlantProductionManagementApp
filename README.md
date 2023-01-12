@@ -25,7 +25,9 @@
 
 **2.0** - old database SQLite will be replaced with MySql database. App will work on MVC Spring architecture. Finished.
 
-**2.1** - add new features as customized database tables, main page. Change the template engine to vaadin. Work in progres.
+**2.1** - add a REST controller so that the program can be operated through dedicated websites. Work in progres.
+
+**2.2** - add new features as customized database tables, main page. Change the template engine to vaadin. Plans for future.
 
 **3.0** - App will be published on AWS. Propable change of database. Plans for future.
 
