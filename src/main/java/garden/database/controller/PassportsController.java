@@ -4,6 +4,7 @@ package garden.database.controller;
 import garden.database.entity.Flowers;
 import garden.database.entity.Passports;
 import garden.database.entity.Shops;
+import garden.database.pdfgenerator.PdfGenerator;
 import garden.database.service.FlowersService;
 import garden.database.service.PassportsService;
 import garden.database.service.ShopsService;
@@ -22,7 +23,6 @@ public class PassportsController {
 
     private PassportsService passportsService;
     private ShopsService shopsService;
-
     private FlowersService flowersService;
 
     @Autowired
@@ -103,7 +103,6 @@ public class PassportsController {
         model.addAttribute("passport", passport);
         model.addAttribute("flowers", passport.getFlowers());
 
-
         return "passports-form";
     }
 
@@ -133,11 +132,13 @@ public class PassportsController {
 
         System.out.println("Generated .pdf file");
         Passports passport = passportsService.findById(id);
+        Set<Flowers> flowers = passport.getFlowers();
+        Shops shop = passport.getShop();
+        PdfGenerator pdfGenerator = new PdfGenerator(passport, shop, flowers);
+        pdfGenerator.generatePassport();
         System.out.println(passport.toString());
 
         return "pdf-generator";
     }
-
-
 
 }
