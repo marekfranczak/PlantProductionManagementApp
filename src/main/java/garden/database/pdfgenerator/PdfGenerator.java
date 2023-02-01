@@ -44,7 +44,10 @@ public class PdfGenerator {
             Font font = FontFactory.getFont(String.valueOf(Font.FontFamily.TIMES_ROMAN), BaseFont.IDENTITY_H, true);
 
             try {
-                BaseFont bf = BaseFont.createFont("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
+                String classPath = PdfGenerator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                System.out.println("classPath: "+classPath);
+                //BaseFont bf = BaseFont.createFont("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
+                BaseFont bf = BaseFont.createFont(".\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
                 font = new Font(bf, 8);
             }catch(IOException e){
                 System.out.println("Font loading error.."+e.getMessage());
@@ -58,7 +61,7 @@ public class PdfGenerator {
 
                     PdfPCell imageCell = new PdfPCell(new Paragraph());
                     try {
-                        Image img = Image.getInstance("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\pobrane.png");
+                        Image img = Image.getInstance(".\\GardenDataBase\\pobrane.png");
                         imageCell.addElement(img);
                         imageCell.setBorderColor(BaseColor.WHITE);
                         upCell.addCell(imageCell);
