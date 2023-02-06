@@ -1,6 +1,7 @@
 package garden.database.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -29,7 +30,7 @@ public class Flowers {
     @Column(name="removed")
     private int removed;
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "flowers")
     private Set<Passports> passports = new HashSet<>();
 

@@ -14,6 +14,18 @@
 
   <h3>Garden DataBase</h3>
   <hr>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+                <tr>
+                    <a th:href="@{/flowers/list}" class="btn btn-info btn-sm">Flowers</a>
+                    ||
+                    <a th:href="@{/passports/list}" class="btn btn-info btn-sm">Passports</a>
+                    ||
+                    <a th:href="@{/shops/list}" class="btn btn-info btn-sm">Shops</a>
+                </tr>
+                </thead>
+            </table>
+    <hr>
 
   <!-- Add a button-->
   <a th:href="@{/passports/showFormForAdd}" class="btn btn-primary btn-sm mb-3">

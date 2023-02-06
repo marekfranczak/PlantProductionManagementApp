@@ -5,6 +5,7 @@ import garden.database.service.FlowersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,10 @@ public class FlowersRestController {
 
     @GetMapping("/flowers")
     public List<Flowers> getFlowers(){
-        return flowersService.findAll();
+        List<Flowers> flowers = new ArrayList<>();
+        flowers.addAll(flowersService.findAll());
+        System.out.println("Flowers: \n"+flowers);
+        return flowers;
     }
 
     @GetMapping("/flowers/{flowerId}")
