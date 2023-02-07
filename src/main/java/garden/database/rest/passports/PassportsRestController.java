@@ -1,6 +1,7 @@
 package garden.database.rest.passports;
 
 import garden.database.entity.Passports;
+import garden.database.rest.exceptions.DataNotFoundException;
 import garden.database.service.PassportsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class PassportsRestController {
     public Passports getPassport(@PathVariable int passportId){
         Passports tempPass = passportsService.findById(passportId);
         if(tempPass == null)
-            throw new PassportNotFoundException("Passport not found id: "+passportId);
+            throw new DataNotFoundException("Passport not found id: "+passportId);
         return tempPass;
     }
 
@@ -45,7 +46,7 @@ public class PassportsRestController {
     public String deletePassport(@PathVariable int passportId){
         Passports tempPass = passportsService.findById(passportId);
         if(tempPass == null)
-            throw new PassportNotFoundException("Passport not found id: "+passportId);
+            throw new DataNotFoundException("Passport not found id: "+passportId);
         passportsService.deleteById(passportId);
         return "Delete Passport Id: "+passportId;
     }

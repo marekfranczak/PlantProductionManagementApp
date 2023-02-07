@@ -1,4 +1,4 @@
-package garden.database.rest.shops;
+package garden.database.rest.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ShopRestExceptionHandler {
+public class DataRestExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<ShopErrorResponse> handleException(ShopNotFoundException e){
+    public ResponseEntity<DataErrorResponse> handleException(DataNotFoundException e){
 
-        ShopErrorResponse error = new ShopErrorResponse(
+        DataErrorResponse error = new DataErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 e.getMessage(),
                 System.currentTimeMillis()
@@ -21,9 +21,9 @@ public class ShopRestExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ShopErrorResponse> handleException(Exception e){
+    public ResponseEntity<DataErrorResponse> handleException(Exception e){
 
-        ShopErrorResponse error = new ShopErrorResponse(
+        DataErrorResponse error = new DataErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 e.getMessage(),
                 System.currentTimeMillis()

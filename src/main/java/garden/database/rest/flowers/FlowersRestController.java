@@ -1,6 +1,7 @@
 package garden.database.rest.flowers;
 
 import garden.database.entity.Flowers;
+import garden.database.rest.exceptions.DataNotFoundException;
 import garden.database.service.FlowersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class FlowersRestController {
     public Flowers getFlower(@PathVariable int flowerId){
         Flowers flower = flowersService.findById(flowerId);
         if(flower == null)
-            throw new FlowerNotFoundException("Flower id not found - "+flowerId);
+            throw new DataNotFoundException("Flower id not found - "+flowerId);
         return flower;
     }
 
@@ -48,7 +49,7 @@ public class FlowersRestController {
     public String deleteFlower(@PathVariable int flowerId){
         Flowers tempFlower = flowersService.findById(flowerId);
         if(tempFlower == null)
-            throw new FlowerNotFoundException("Flower id not found - "+flowerId);
+            throw new DataNotFoundException("Flower id not found - "+flowerId);
         flowersService.deleteById(flowerId);
         return "Delete flower id: "+flowerId;
     }

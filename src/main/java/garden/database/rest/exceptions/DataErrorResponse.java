@@ -1,14 +1,14 @@
-package garden.database.rest.shops;
+package garden.database.rest.exceptions;
 
-public class ShopErrorResponse {
+public class DataErrorResponse {
 
     private int status;
     private String message;
     private long timeStmp;
 
-    public ShopErrorResponse(){}
+    public DataErrorResponse() {}
 
-    public ShopErrorResponse(int status, String message, long timeStmp) {
+    public DataErrorResponse(int status, String message, long timeStmp) {
         this.status = status;
         this.message = message;
         this.timeStmp = timeStmp;

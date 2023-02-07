@@ -1,6 +1,7 @@
 package garden.database.rest.shops;
 
 import garden.database.entity.Shops;
+import garden.database.rest.exceptions.DataNotFoundException;
 import garden.database.service.ShopsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class ShopsRestController {
     public Shops getShops(@PathVariable int shopId){
         Shops tempShop = shopsService.findById(shopId);
         if(tempShop == null)
-            throw new ShopNotFoundException("Shop not found id: "+shopId);
+            throw new DataNotFoundException("Shop not found id: "+shopId);
         return tempShop;
     }
 
@@ -45,7 +46,7 @@ public class ShopsRestController {
     public String deleteShop(@PathVariable int shopId){
         Shops tempShop = shopsService.findById(shopId);
         if(tempShop == null)
-            throw new ShopNotFoundException("Passport not found id: "+shopId);
+            throw new DataNotFoundException("Passport not found id: "+shopId);
         shopsService.deleteById(shopId);
         return "Delete Passport Id: "+shopId;
     }
