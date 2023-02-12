@@ -10,19 +10,36 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Class that implements FlowerDAO interface.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Repository
 public class FlowersDAOImp implements FlowersDAO{
 
 
+    /**
+     * The EntityManager API is used to create and remove persistent entity instances, to find entities by their primary key, and to query over entities.
+     */
     private EntityManager entityManager;
 
 
+    /**
+     * Class constructor that pass entityManager to the object.
+     * @param entityManager EntityManager that will be used by the class instance.
+     */
     @Autowired
     public FlowersDAOImp(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 
 
+    /**
+     * Implementation of 'findAll' method.
+     * @return List of flowers from database.
+     * @see FlowersDAO
+     */
     @Override
     public List<Flowers> findAll() {
 
@@ -33,6 +50,12 @@ public class FlowersDAOImp implements FlowersDAO{
         return flowers;
     }
 
+    /**
+     * Implementation of 'findById' method.
+     * @param id The number of the object we want to save.
+     * @return Flower object from database.
+     * @see FlowersDAO
+     */
     @Override
     public Flowers findById(int id) {
 
@@ -42,6 +65,11 @@ public class FlowersDAOImp implements FlowersDAO{
         return flower;
     }
 
+    /**
+     * Implementation of 'save' method.
+     * @param flower Flower object to be saved.
+     * @see FlowersDAO
+     */
     @Override
     public void save(Flowers flower) {
 
@@ -52,6 +80,11 @@ public class FlowersDAOImp implements FlowersDAO{
 
     }
 
+    /**
+     * Implementation of 'deletedById' method.
+     * @param id The number of the object we want to delete.
+     * @see FlowersDAO
+     */
     @Override
     public void deleteById(int id) {
 
@@ -63,6 +96,12 @@ public class FlowersDAOImp implements FlowersDAO{
 
     }
 
+    /**
+     * Implementation of 'findByName' method.
+     * @param name The name of the object we want to find.
+     * @return Flower object from database.
+     * @see FlowersDAO
+     */
     @Override
     public Flowers findByName(String name) {
         try{

@@ -17,14 +17,34 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+/**
+ * Class responsible for mapping HTTP requests for passports.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Controller
 @RequestMapping("/passports")
 public class PassportsController {
 
+    /**
+     * Instance of the class responsible for handling transactions in the application.
+     */
     private PassportsService passportsService;
+    /**
+     * Instance of the class responsible for handling transactions in the application.
+     */
     private ShopsService shopsService;
+    /**
+     * Instance of the class responsible for handling transactions in the application.
+     */
     private FlowersService flowersService;
 
+    /**
+     * Class constructor passing the service class to the object.
+     * @param passportsService Instance of the class responsible for handling transactions in the application.
+     * @param shopsService Instance of the class responsible for handling transactions in the application.
+     * @param flowersService Instance of the class responsible for handling transactions in the application.
+     */
     @Autowired
     public PassportsController(PassportsService passportsService, ShopsService shopsService, FlowersService flowersService){
         this.passportsService = passportsService;
@@ -32,6 +52,11 @@ public class PassportsController {
         this.flowersService = flowersService;
     }
 
+    /**
+     * Method that handles the request /list. Data from passport table with linked data will be pass to model.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/list")
     public String passportsList(Model model){
 
@@ -49,6 +74,11 @@ public class PassportsController {
         return "passport-list";
     }
 
+    /**
+     * Method that handles the request /showFormForAdd. Which allows you to prepare data before pass to database table.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model){
 
@@ -57,6 +87,13 @@ public class PassportsController {
         return "passports-form";
     }
 
+    /**
+     * Method that handles the request /save. Which allows you to add data to a database table.
+     * @param passport Passport object that will be pass to database.
+     * @param passportError BindingResult interface that captures errors appearing in the form and displays them.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @PostMapping("/save")
     public String savePassport(@Valid @ModelAttribute("passport") Passports passport, BindingResult passportError, Model model){
 
@@ -87,15 +124,18 @@ public class PassportsController {
             passportZero.setData(passport.getData());
             passportZero.setShop(passport.getShop());
             passportsService.save(passportZero);
-            return "redirect:/passports/list";
         } else {
             passportsService.save(passport);
-            return "redirect:/passports/list";
         }
-
-
+        return "redirect:/passports/list";
     }
 
+    /**
+     * Method that handles the request /showFormForUpdate. Which allows you to prepare data before update it.
+     * @param id Number of data which will be displayed for modification.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("passportId") int id, Model model){
 
@@ -106,6 +146,12 @@ public class PassportsController {
         return "passports-form";
     }
 
+    /**
+     * Method that handles the request /delete. Which allows you to delete data from database.
+     * @param id Number of data which will be deleted from database.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/delete")
     public String delete(@RequestParam("passportId") int id, Model model){
 
@@ -113,6 +159,12 @@ public class PassportsController {
         return "redirect:/passports/list";
     }
 
+    /**
+     * Method that handles the request /showFormForLink. Which allows you to link passport data with flowers.
+     * @param id Number of passport that will be linked with flowers.
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/showFormForLink")
     public String passportFlowerLink(@RequestParam("passportId") int id, Model model){
         Passports passport = passportsService.findById(id);
@@ -127,6 +179,12 @@ public class PassportsController {
         return "passport-flowers-link";
     }
 
+    /**
+     * Method that handles the request /generatePdfFile. Which allows you to generate .pdf file with passport data.
+     * @param id Passport number from which the .pdf file will be generated
+     * @param model Current model that will be used to contain data.
+     * @return Name of website layouts file.
+     */
     @GetMapping("/generatePdfFile")
     public String generatePDF(@RequestParam("passportId") int id, Model model){
 
@@ -136,7 +194,6 @@ public class PassportsController {
         Shops shop = passport.getShop();
         PdfGenerator pdfGenerator = new PdfGenerator(passport, shop, flowers);
         pdfGenerator.generatePassport();
-        System.out.println(passport.toString());
 
         return "pdf-generator";
     }

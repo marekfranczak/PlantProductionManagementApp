@@ -1,5 +1,10 @@
 package garden.database.rest.exceptions;
 
+/**
+ * Class that create REST exception response.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 public class DataErrorResponse {
 
     private int status;

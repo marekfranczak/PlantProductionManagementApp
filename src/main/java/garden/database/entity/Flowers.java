@@ -9,6 +9,11 @@ import jakarta.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity of Flowers table from database.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Entity
 @Table(name="flowers")
 public class Flowers {

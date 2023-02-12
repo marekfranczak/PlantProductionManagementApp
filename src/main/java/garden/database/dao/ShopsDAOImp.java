@@ -10,18 +10,35 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Class that implements ShopsDAO interface.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Repository
 public class ShopsDAOImp implements ShopsDAO{
 
-    //using Hibernate
 
+
+    /**
+     * The EntityManager API is used to create and remove persistent entity instances, to find entities by their primary key, and to query over entities.
+     */
     private EntityManager entityManager;
 
+    /**
+     * Class constructor that pass entityManager to the object.
+     * @param entityManager EntityManager that will be used by the class instance.
+     */
     @Autowired
     public ShopsDAOImp(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 
+    /**
+     * Implementation of 'findAll' method.
+     * @return List of shops from database.
+     * @see ShopsDAO
+     */
     @Override
     public List<Shops> findAll() {
 
@@ -34,6 +51,12 @@ public class ShopsDAOImp implements ShopsDAO{
         return shops;
     }
 
+    /**
+     * Implementation of 'findById' method.
+     * @param id The number of the object we want to save.
+     * @return Shop object from database.
+     * @see ShopsDAO
+     */
     @Override
     public Shops findById(int id) {
 
@@ -43,6 +66,11 @@ public class ShopsDAOImp implements ShopsDAO{
         return shop;
     }
 
+    /**
+     * Implementation of 'save' method.
+     * @param shop Shop object to be saved.
+     * @see ShopsDAO
+     */
     @Override
     public void save(Shops shop) {
 
@@ -52,6 +80,11 @@ public class ShopsDAOImp implements ShopsDAO{
 
     }
 
+    /**
+     * Implementation of 'deletedById' method.
+     * @param id The number of the object we want to delete.
+     * @see ShopsDAO
+     */
     @Override
     public void deleteById(int id) {
 
@@ -63,10 +96,14 @@ public class ShopsDAOImp implements ShopsDAO{
 
     }
 
+    /**
+     * Implementation of 'findByName' method.
+     * @param name The name of the object we want to find.
+     * @return Shop object from database.
+     * @see ShopsDAO
+     */
     @Override
     public Shops findByName(String name) {
-
-        //add exception jakarta.persistence.NoResultException: No result found for query [from Shops where name=:shop]
 
         try{
         Session currentSession = entityManager.unwrap(Session.class);

@@ -1,5 +1,11 @@
 package garden.database.rest.exceptions;
 
+/**
+ * CLass extends by RuntimeException class.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ * @see RuntimeException
+ */
 public class DataNotFoundException extends RuntimeException{
 
 

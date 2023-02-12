@@ -2,11 +2,15 @@ package garden.database.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity of Passports table from database.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Entity
 @Table(name="passports")
 public class Passports {

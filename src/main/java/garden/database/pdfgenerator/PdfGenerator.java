@@ -12,27 +12,46 @@ import garden.database.entity.Shops;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
+/**
+ * class responsible for creating .pdf files.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 public class PdfGenerator {
 
+    /**
+     * Passport object that will be saved to a .pdf file.
+     */
     private Passports passport;
+    /**
+     * Set of flowers that are associated with a particular passport.
+     */
     private Set<Flowers> flowers;
+    /**
+     * Shop object that is associated with a particular passport.
+     */
     private Shops shop;
 
+    /**
+     * Class constructor that passes objects to be saved in a .pdf file.
+     * @param passport Passport object that will be saved to a .pdf file.
+     * @param shop Shop object that is associated with a particular passport.
+     * @param flowers Set of flowers that are associated with a particular passport.
+     */
     public PdfGenerator(Passports passport, Shops shop, Set<Flowers> flowers){
         this.passport = passport;
         this.flowers = flowers;
         this.shop = shop;
     }
 
+    /**
+     * Method that create empty .pdf file then fill it using data from objects passed by constructor.
+     */
     public void generatePassport(){
         try {
             Document document = new Document();
-            int passportID = passport.getId();
-            List<Integer> flowerIdList = new ArrayList<>();
 
             String fileName = shop.getName()+"_"+passport.getData();
 
@@ -46,7 +65,6 @@ public class PdfGenerator {
             try {
                 String classPath = PdfGenerator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                 System.out.println("classPath: "+classPath);
-                //BaseFont bf = BaseFont.createFont("C:\\Users\\X\\Moje\\Java\\Projekty\\GardenDataBase\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
                 BaseFont bf = BaseFont.createFont(".\\GardenDataBase\\arial.ttf", BaseFont.CP1250, BaseFont.EMBEDDED);
                 font = new Font(bf, 8);
             }catch(IOException e){

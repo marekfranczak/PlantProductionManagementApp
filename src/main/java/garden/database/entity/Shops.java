@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Entity of Shops table from database.
+ * @author Marek Frańczak
+ * @since 2.0.0
+ */
 @Entity
 @Table(name="shops")
 public class Shops {
