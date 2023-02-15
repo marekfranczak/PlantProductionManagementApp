@@ -1,6 +1,6 @@
-# GARDEN DATA BASE
+# PLANT PRODUCTION MANAGEMENT APP
 
-**GARDEN DATA BASE** is an app to store EU Plants Passports and create new.
+**PLANT PRODUCTION MANAGEMENT APP** it is an application supporting companies producing ornamental plants in accordance with EU guidelines.
 
 **Status** - Work in progres.
 
@@ -37,11 +37,11 @@
 
 ![Overview passports](Documents/42.png)
 
-**Overview passports**
+**Overview plant passports**
 
 ![Creating passport](Documents/52.png)
 
-**Creating passport**
+**Creating plant passport**
 
 ![Overview shops](Documents/12.png)
 
